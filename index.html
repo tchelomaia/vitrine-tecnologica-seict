@@ -2,42 +2,220 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Vitrine Tecnológica - SEICT/AC</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Montserrat:900,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: Raleway, Arial, sans-serif; margin:0; background:#f8f8f8; color:#222;}
+    html,body { margin:0; padding:0; box-sizing:border-box; font-family:'Raleway',Arial,sans-serif; background:#f8f8f8; color:#222;}
+    /* Barra superior Governo do Acre */
+    .top-menu-acre {
+      background: #269124;
+      border-bottom: 4px solid #FFD600;
+      width: 100%; min-height: 44px; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2vw;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .top-menu-acre .acre-logo {
+      font-weight: 900;
+      font-size: 1.24em;
+      color: #fff;
+      letter-spacing: 1px;
+      margin-right: 18px;
+    }
+    .top-menu-acre nav {
+      flex: 1;
+      text-align: right;
+    }
+    .top-menu-acre nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 17px;
+      font-size: 1em;
+      transition: color 0.19s;
+      letter-spacing: 0.2px;
+      font-family:'Raleway',Arial,sans-serif;
+    }
+    .top-menu-acre nav a:hover { color: #FFD600; text-shadow:0 0 1px #ffc627; }
+
+    /* Barra institucional SEICT */
+    .menu-seict {
+      background: #fff; width:100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 2vw 10px 2vw; box-sizing: border-box;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    .menu-seict .logo-seict {
+      display: flex; align-items: center;
+    }
+    .menu-seict .logo-seict img {
+      height: 50px; margin-right: 13px;
+      display:block;
+    }
+    .menu-seict .logo-seict .desc {
+      font-size:0.97em; color:#2b6539; font-family:'Raleway',Arial,sans-serif;
+      font-weight: 600; line-height:1.16;
+    }
+    .menu-seict .busca {
+      flex:1; text-align: right;
+      margin:0 18px;
+      display:flex; align-items:center; justify-content:flex-end;
+    }
+    .menu-seict .busca input {
+      border:1px solid #ccd; border-radius:5px 0 0 5px;
+      padding:7px 13px; font-size:1em; outline:none; min-width:120px; font-family:'Raleway',Arial,sans-serif;
+    }
+    .menu-seict .busca button {
+      background: #00723e; border:none; color:#fff; border-radius:0 5px 5px 0; padding:8px 14px; font-size:1em; cursor:pointer;
+      transition:background .19s;
+    }
+    .menu-seict .busca button:hover { background:#00591a; }
+    .menu-seict .inst-nav {
+      margin-left:24px;
+    }
+    .menu-seict .inst-nav a {
+      color: #269124;
+      text-decoration:none;
+      font-weight:700;
+      font-size:1.01em;
+      margin: 0 12px;
+      padding:5px 0 5px 0;
+      transition:color .18s;
+      position:relative;
+      font-family:'Raleway',Arial,sans-serif;
+    }
+    .menu-seict .inst-nav a:hover { color:#00723e;}
+    /* Submenu */
+    .menu-seict .inst-nav .has-submenu {
+      cursor:pointer;
+      position:relative;
+      padding-right:20px;
+    }
+    .menu-seict .inst-nav .has-submenu:after {
+      content:"\f0d7"; font-family:"Font Awesome 6 Free"; font-weight:900; font-size:0.88em; color:#00723e;
+      margin-left: 5px; vertical-align: middle;
+      position:absolute; right:4px; top:53%;
+      transform:translateY(-47%);
+    }
+    .menu-seict .inst-nav .submenu {
+      display:none; position:absolute; left:0; top:25px; min-width:160px;
+      background:#fff; border:1px solid #e6e6e6; border-radius:7px; box-shadow:0 2px 10px rgba(0,0,0,.08);
+      z-index:90;
+    }
+    .menu-seict .inst-nav .has-submenu:hover .submenu, .menu-seict .inst-nav .has-submenu:focus-within .submenu {
+      display:block;
+    }
+    .menu-seict .inst-nav .submenu a {
+      color:#1a1a1a; margin:0; display:block; padding:7px 14px; font-size:0.97em; font-weight:600;
+      border-bottom:1px solid #eee;
+      white-space:nowrap;
+      background:#fff;
+    }
+    .menu-seict .inst-nav .submenu a:hover { background:#e5f9ee; color:#269124; }
+    .menu-seict .inst-nav .submenu a:last-child { border-bottom:none; }
+    /* Mobile */
+    @media (max-width:900px){
+      .top-menu-acre, .menu-seict { flex-direction:column;align-items:flex-start; }
+      .top-menu-acre nav { width:100%;text-align:left;margin-top:5px;}
+      .top-menu-acre nav a { margin:7px 8px 0 0;}
+      .menu-seict {padding:10px 3vw;}
+      .menu-seict .busca {margin:10px 0;}
+      .menu-seict .inst-nav {margin-left:0;margin-top:9px;}
+    }
+    /* --------- Restante da Vitrine --------- */
     header { background: #00723e; color: #fff; padding: 28px 0 20px 0; text-align: center;}
     .menu { background: #ffc627; text-align: center; padding: 12px 0;}
-    .menu button { background: none; border: none; color: #222; font-size: 1.07em; font-weight: bold; margin: 0 14px; cursor: pointer; transition: color .2s;}
+    .menu button { background: none; border: none; color: #222; font-size: 1.07em; font-weight: bold; margin: 0 14px; cursor: pointer; transition: color .2s; font-family:'Raleway',Arial,sans-serif;}
     .menu button.active, .menu button:hover { color: #00723e; }
     .tab { display: none; max-width: 1100px; margin: 0 auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.06); padding: 36px 36px 30px 36px;}
     .tab.active { display: block; }
+    .busca-bar { display:flex; align-items:center; gap:8px; margin-bottom:28px; }
+    .busca-bar input { flex:1; padding:9px 14px; font-size:1.07em; border-radius:5px 0 0 5px; border:1px solid #bbb; outline:none;}
+    .busca-bar button { padding:10px 20px; border:none; background:#ffc627; color:#222; font-weight:bold; border-radius:0 5px 5px 0; cursor:pointer; font-size:1.08em;}
     .cards { display: flex; flex-wrap: wrap; gap: 30px;}
     .card { background: #f5f5f5; border-radius: 10px; border: 1px solid #e0e0e0; flex: 1 1 320px; min-width: 270px; max-width: 400px; padding: 18px 18px 12px 18px; margin-bottom: 20px;}
     .card img { width: 100%; border-radius: 7px; height: 120px; object-fit: cover; margin-bottom: 10px;}
-    .card h3 { color: #00723e; margin: 4px 0 8px 0;}
+    .card h3 { color: #00723e; margin: 4px 0 8px 0; font-family:'Raleway',Arial,sans-serif;}
     .infos-extras {font-size:0.97em; margin-bottom: 4px;}
     .card p { color: #444; margin-bottom: 8px;}
     .cadastro-box { max-width: 670px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; background: #fafafa; padding: 24px 18px 18px 18px; }
     .steps-nav {display:flex;justify-content:center;margin-bottom:22px;}
-    .steps-nav button {background:none;border:none;padding:7px 15px;margin:0 2px;cursor:pointer;border-radius:6px;font-weight:600;font-size:1em;color:#00723e;border:1px solid #ddd;}
+    .steps-nav button {background:none;border:none;padding:7px 15px;margin:0 2px;cursor:pointer;border-radius:6px;font-weight:600;font-size:1em;color:#00723e;border:1px solid #ddd; font-family:'Raleway',Arial,sans-serif;}
     .steps-nav button.active {background:#00723e;color:#fff;border:1px solid #00723e;}
     .form-step { display: none; }
     .form-step.active { display: block;}
-    label { display: block; margin-top: 12px; font-weight: bold; color: #00723e;}
+    label { display: block; margin-top: 12px; font-weight: bold; color: #00723e; font-family:'Raleway',Arial,sans-serif;}
     input, textarea, select {
-      width: 100%; padding: 7px; border-radius: 5px; border: 1px solid #ccc; margin-top: 6px; margin-bottom: 13px; font-size: 1em;
+      width: 100%; padding: 7px; border-radius: 5px; border: 1px solid #ccc; margin-top: 6px; margin-bottom: 13px; font-size: 1em; font-family:'Raleway',Arial,sans-serif;
     }
-    .cadastro-box button, .cadastro-box .btn-prev, .cadastro-box .btn-next { background: #00723e; color: #fff; padding: 9px 24px; border: none; border-radius: 6px; font-weight: bold; font-size: 1em; margin-top: 14px; margin-right:10px; cursor: pointer;}
+    .cadastro-box button, .cadastro-box .btn-prev, .cadastro-box .btn-next { background: #00723e; color: #fff; padding: 9px 24px; border: none; border-radius: 6px; font-weight: bold; font-size: 1em; margin-top: 14px; margin-right:10px; cursor: pointer; font-family:'Raleway',Arial,sans-serif;}
     .cadastro-msg { color: #00723e; font-weight: bold; margin-top: 16px; text-align: center;}
     .btn-prev {background: #ccc; color:#222;}
-    footer { background: #00723e; color: #fff; text-align: center; padding: 22px 8px 18px 8px; margin-top: 30px; border-radius: 0 0 12px 12px;}
+    .no-result { color: #a33; font-weight: bold; margin: 30px 0 0 10px; font-size:1.1em;}
+    footer { background: #00723e; color: #fff; text-align: center; padding: 22px 8px 22px 8px; margin-top: 30px; border-radius: 0 0 12px 12px;}
+    .footer-extra {margin-top:14px;font-size:1em;line-height:1.4;}
     @media(max-width:900px) {.tab{padding:12px;} .cards{flex-direction:column;align-items:center;}}
   </style>
 </head>
 <body>
+  <!-- Barra Governo do Acre -->
+  <div class="top-menu-acre">
+    <span class="acre-logo">ac.gov.br</span>
+    <nav>
+      <a href="https://www.ac.gov.br/" target="_blank">SERVIÇOS</a>
+      <a href="https://www.gov.br/acessoainformacao/pt-br" target="_blank">ACESSO À INFORMAÇÃO</a>
+      <a href="http://www.diario.ac.gov.br/" target="_blank">DIÁRIO OFICIAL</a>
+      <a href="http://www.legis.ac.gov.br/" target="_blank">LEGIS</a>
+      <a href="http://estado.ac.gov.br/orgao-entidades/" target="_blank">ÓRGÃOS E ENTIDADES</a>
+      <a href="http://transparencia.ac.gov.br/#/dashboard" target="_blank">PORTAL DA TRANSPARÊNCIA</a>
+      <a href="https://agencia.ac.gov.br/" target="_blank">NOTÍCIAS</a>
+      <a href="https://webmail.ac.gov.br/" target="_blank">WEBMAIL</a>
+    </nav>
+  </div>
+  <!-- Barra institucional SEICT -->
+  <div class="menu-seict">
+    <div class="logo-seict">
+      <img src="seict-logo.png" alt="SEICT" />
+      <span class="desc">Secretaria de Estado de Indústria, Ciência e Tecnologia</span>
+    </div>
+    <div class="busca">
+      <input type="text" id="buscaTec2" placeholder="Pesquisar tecnologia...">
+      <button onclick="pesquisaTopo()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="inst-nav">
+      <a href="#" class="has-submenu" tabindex="0">Institucional
+        <div class="submenu">
+          <a href="https://seict.ac.gov.br/contatos/" target="_blank">Contatos</a>
+          <a href="https://seict.ac.gov.br/quem-somos/" target="_blank">Quem Somos</a>
+          <a href="http://estado.ac.gov.br/orgao-entidades/" target="_blank">Órgãos e Entidades</a>
+          <a href="https://seict.ac.gov.br/contate-nos/" target="_blank">Contate-nos</a>
+        </div>
+      </a>
+      <a href="#" class="has-submenu" tabindex="0">Ações e Programas
+        <div class="submenu">
+          <a href="https://seict.ac.gov.br/polo-digital/" target="_blank">Polo Digital</a>
+          <a href="https://seict.ac.gov.br/comprac/" target="_blank">Comprac</a>
+          <a href="https://sineacre.cloud/" target="_blank">Sine Acre</a>
+        </div>
+      </a>
+      <a href="#" class="has-submenu" tabindex="0">Serviços
+        <div class="submenu">
+          <a href="https://seict.ac.gov.br/sistemas-corporativos/" target="_blank">Sistemas Corporativos</a>
+          <a href="https://seict.ac.gov.br/guia-de-servicos/" target="_blank">Guia de Serviços</a>
+        </div>
+      </a>
+      <a href="#" class="has-submenu" tabindex="0">Servidores
+        <div class="submenu">
+          <a href="https://estado.ac.gov.br/servidor-publico/" target="_blank">Servidor Público</a>
+          <a href="https://minhaconta.ac.gov.br/" target="_blank">Minha Conta</a>
+        </div>
+      </a>
+      <a href="https://seict.ac.gov.br/editais/" target="_blank">Editais</a>
+    </div>
+  </div>
+
   <header>
     <h1><i class="fa-solid fa-flask"></i> Vitrine Tecnológica</h1>
     <div style="font-size:1.12em;">Secretaria de Estado de Indústria, Ciência e Tecnologia do Acre</div>
@@ -57,7 +235,7 @@
         Os produtos e processos apresentados na vitrine encontram-se em desenvolvimento, ou seja, ainda não estão finalizados. Estão categorizados em uma escala de níveis de maturidade tecnológica que vai de 1 a 9 (figura abaixo), baseada na referência primária ISO/FDIS 16290.
       </p>
       <div style="text-align:center; margin:22px 0 12px 0;">
-        <img src="https://portais.univasf.edu.br/nit/nucleo-de-inovacao-tecnologica/documentos/graus-de-maturidade-tecnologica.png" alt="Escala TRL/MRL" style="max-width:95%; border-radius:8px;">
+        <img src="701a4fe8-3730-4762-b42e-639635bbb7f4.png" alt="Escala TRL/MRL" style="max-width:95%; border-radius:8px;">
       </div>
       <p style="font-size:0.99em; color:#555;">
         <b>Níveis de maturidade tecnológica:</b> Escala TRL/MRL baseada na referência primária ISO/FDIS 16290:2013 (E) Space systems – Definition of the Technology Readiness Levels (TRLs) and their criteria of assessment. International Organization for Standardization, Switzerland, 2013, 12 p.<br><br>
@@ -70,26 +248,231 @@
   <!-- Vitrine -->
   <div class="tab" id="vitrine">
     <h2 style="color:#00723e;"><i class="fas fa-lightbulb"></i> Tecnologias Disponíveis</h2>
-    <div class="cards" id="tecnologias-lista">
-      <!-- cards aqui (use os cards-resumo enviados nas respostas anteriores!) -->
+    <div class="busca-bar">
+      <input id="buscaTec" type="text" placeholder="Pesquise por palavras-chave...">
+      <button onclick="document.getElementById('buscaTec').value=''; renderCards();"><i class="fas fa-rotate-left"></i> Limpar</button>
     </div>
+    <div class="cards" id="tecnologias-lista"></div>
+    <div id="noResult" class="no-result" style="display:none;">Nenhuma tecnologia encontrada.</div>
   </div>
 
-  <!-- Cadastro multi-etapas (mantém seu formulário atual com sub-abas) -->
-  <!-- ...formulário aqui... -->
+  <!-- Cadastro multi-etapas -->
+  <div class="tab" id="cadastro">
+    <div class="cadastro-box">
+      <div class="steps-nav">
+        <button type="button" class="active" onclick="showStep(0)">Dados Gerais</button>
+        <button type="button" onclick="showStep(1)">Nível TRL</button>
+        <button type="button" onclick="showStep(2)">Propriedade Intelectual</button>
+        <button type="button" onclick="showStep(3)">Transferência</button>
+        <button type="button" onclick="showStep(4)">Parcerias</button>
+        <button type="button" onclick="showStep(5)">Institucional</button>
+      </div>
+      <form id="form-cadastro">
+        <div class="form-step active">
+          <h2><i class="fas fa-lightbulb"></i> Dados Gerais</h2>
+          <label>Nome da Tecnologia</label>
+          <input type="text" id="nomeTec" required placeholder="Ex: Solução ABC">
+          <label>Resumo</label>
+          <textarea id="resumoTec" required placeholder="Descreva a tecnologia..."></textarea>
+          <label>URL da Imagem</label>
+          <input type="url" id="imgTec" placeholder="https://...">
+          <label>Setor</label>
+          <input type="text" id="setorTec" placeholder="Ex: Agroindústria, Saúde...">
+          <button type="button" class="btn-next" onclick="nextStep(1)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="form-step">
+          <h2><i class="fas fa-signal"></i> Nível TRL</h2>
+          <label>Nível TRL</label>
+          <select id="trlTec">
+            <option>1 - Princípios Básicos Observados</option>
+            <option>2 - Conceito Tecnológico Formulado</option>
+            <option>3 - Prova de Conceito Experimental</option>
+            <option>4 - Validação em Laboratório</option>
+            <option>5 - Validação em Ambiente Relevante</option>
+            <option>6 - Demonstração em Ambiente Relevante</option>
+            <option>7 - Demonstração em Ambiente Operacional</option>
+            <option>8 - Sistema Completo e Qualificado</option>
+            <option>9 - Sistema Real em Operação</option>
+          </select>
+          <button type="button" class="btn-prev" onclick="showStep(0)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(2)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="form-step">
+          <h2><i class="fas fa-certificate"></i> Propriedade Intelectual</h2>
+          <label>Tipo de Proteção</label>
+          <select id="piTec">
+            <option>Patente</option>
+            <option>Programa de Computador</option>
+            <option>Direitos Autorais</option>
+            <option>Marca</option>
+            <option>Desenho Industrial</option>
+            <option>Segredo Industrial</option>
+            <option>Nenhum</option>
+          </select>
+          <label>Número de Protocolo</label>
+          <input type="text" id="numPiTec" placeholder="Digite o número se houver">
+          <button type="button" class="btn-prev" onclick="showStep(1)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(3)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="form-step">
+          <h2><i class="fas fa-exchange-alt"></i> Transferência de Tecnologia</h2>
+          <label>Oportunidade de Transferência</label>
+          <input type="text" id="transfTec" placeholder="Descreva oportunidades...">
+          <label>Situação</label>
+          <select id="sitTransfTec">
+            <option>Disponível</option>
+            <option>Em Negociação</option>
+            <option>Transferida</option>
+            <option>Indisponível</option>
+          </select>
+          <button type="button" class="btn-prev" onclick="showStep(2)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(4)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="form-step">
+          <h2><i class="fas fa-handshake"></i> Parcerias</h2>
+          <label>Parceiros</label>
+          <input type="text" id="parceriasTec" placeholder="Ex: Cooperativa, Startup, Universidade...">
+          <button type="button" class="btn-prev" onclick="showStep(3)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(5)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="form-step">
+          <h2><i class="fas fa-building"></i> Institucional</h2>
+          <label>Contato institucional</label>
+          <input type="text" id="contatoTec" placeholder="E-mail, telefone...">
+          <button type="button" class="btn-prev" onclick="showStep(4)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button id="form-cadastro-btn" type="submit"><i class="fas fa-save"></i> Cadastrar Tecnologia</button>
+        </div>
+      </form>
+      <div class="cadastro-msg" id="msg-cadastro" style="display:none;">
+        <i class="fas fa-check-circle"></i> Tecnologia cadastrada (simulação)!
+      </div>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 Governo do Estado do Acre. Todos os direitos reservados.<br>
     <span style="font-size:0.9em;">Feito para fins de teste e apresentação • <i class="fab fa-font-awesome"></i> Font Awesome</span>
+    <div class="footer-extra">
+      <b>PROFNIT - Mestrado Profissional em REDE NACIONAL</b><br>
+      Propriedade Intelectual e Transferência de Tecnologia para Inovação<br>
+      <br>
+      Em atendimento (NIT50) Oficina Profissional do Projeto Pedagógico do PROFNIT (6 créditos)
+    </div>
   </footer>
 
   <script>
+    // Busca principal e barra do topo
+    function pesquisaTopo() {
+      const val = document.getElementById('buscaTec2').value.trim();
+      if(val) {
+        openTab({currentTarget: document.querySelectorAll('.menu button')[1]}, 'vitrine');
+        document.getElementById('buscaTec').value = val;
+        renderCards();
+      }
+    }
     function openTab(evt, tab) {
       document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
       document.querySelectorAll('.menu button').forEach(e => e.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
       evt.currentTarget.classList.add('active');
+      if(tab === 'vitrine') renderCards();
     }
+    let currentStep = 0;
+    function showStep(i) {
+      currentStep = i;
+      let steps = document.querySelectorAll('.form-step');
+      steps.forEach((step, idx) => step.classList.toggle('active', idx === i));
+      let navBtns = document.querySelectorAll('.steps-nav button');
+      navBtns.forEach((btn, idx) => btn.classList.toggle('active', idx === i));
+      window.scrollTo({top: 220, behavior:'smooth'});
+    }
+    function nextStep(next) { showStep(next); }
+    // Cards iniciais
+    const cardsExemplo = [
+      { nome: "Agroscre – Avaliação de Tendências de Transporte de Princípios Ativos de Agrotóxicos", resumo: "Programa computacional que agiliza a avaliação do potencial de movimentação de princípios ativos de agrotóxicos, útil na priorização de análises ambientais.", img: "https://via.placeholder.com/300x110.png?text=Agroscre", setor: "Agropecuária, Meio Ambiente", trl: "7", pi: "Programa de Computador" },
+      { nome: "AgroTag Aqua", resumo: "Módulo do sistema AgroTag para levantamento e otimização da coleta de dados aquícolas, aprimorando o monitoramento de produção.", img: "https://via.placeholder.com/300x110.png?text=AgroTag+Aqua", setor: "Aquicultura, Tecnologia da Informação", trl: "6", pi: "Programa de Computador" },
+      { nome: "AgroTag Carbono", resumo: "Ferramenta para monitoramento e coleta de dados georreferenciados sobre emissões de carbono na agropecuária.", img: "https://via.placeholder.com/300x110.png?text=AgroTag+Carbono", setor: "Sustentabilidade, Meio Ambiente", trl: "8", pi: "Programa de Computador" },
+      { nome: "AgroTag ILPF", resumo: "Módulo do sistema AgroTag para monitoramento de Integração Lavoura-Pecuária-Floresta, auxiliando políticas públicas e produtores.", img: "https://via.placeholder.com/300x110.png?text=AgroTag+ILPF", setor: "Agropecuária, Inovação Rural", trl: "7", pi: "Programa de Computador" },
+      { nome: "AgroTag MFE", resumo: "Módulo do sistema AgroTag para compartilhamento de informações técnicas sobre manejo florestal sustentável.", img: "https://via.placeholder.com/300x110.png?text=AgroTag+MFE", setor: "Manejo Florestal, Meio Ambiente", trl: "6", pi: "Programa de Computador" },
+      { nome: "AgroTag Pará", resumo: "Sistema para monitoramento de emissões de gases de efeito estufa em atividades agropecuárias, baseado em dados regionais.", img: "https://via.placeholder.com/300x110.png?text=AgroTag+Pará", setor: "Clima, Agricultura", trl: "7", pi: "Programa de Computador" },
+      { nome: "AgroTag VEG", resumo: "Aplicativo mobile para coleta sistemática de dados de campo e compartilhamento em rede para agricultores e técnicos.", img: "https://via.placeholder.com/300x110.png?text=AgroTag+VEG", setor: "Agricultura, Tecnologia da Informação", trl: "8", pi: "Programa de Computador" },
+      { nome: "Ambitec-Agro", resumo: "Sistema informatizado de avaliação de impactos ambientais de inovações tecnológicas agropecuárias.", img: "https://via.placeholder.com/300x110.png?text=Ambitec-Agro", setor: "Meio Ambiente, Gestão", trl: "9", pi: "Programa de Computador" },
+      { nome: "APOIA-Novo Rural", resumo: "Ferramenta de análise de desempenho ambiental de atividades rurais baseada em 62 indicadores de sustentabilidade.", img: "https://via.placeholder.com/300x110.png?text=APOIA-Novo+Rural", setor: "Agropecuária, Sustentabilidade", trl: "8", pi: "Programa de Computador" },
+      { nome: "Polinização no Morango", resumo: "Práticas para favorecer abelhas na cultura do morango, aumentando produtividade e qualidade dos frutos.", img: "https://via.placeholder.com/300x110.png?text=Polinizacao+Morango", setor: "Fruticultura, Sustentabilidade", trl: "5", pi: "Prática Agropecuária" }
+    ];
+    let editIndex = null;
+    function renderCards() {
+      const lista = document.getElementById('tecnologias-lista');
+      const busca = (document.getElementById('buscaTec')||{}).value || '';
+      let encontrados = 0;
+      lista.innerHTML = "";
+      cardsExemplo.forEach((c, i) => {
+        const texto = (c.nome + ' ' + c.resumo + ' ' + c.setor + ' ' + c.trl + ' ' + c.pi).toLowerCase();
+        if(!busca || texto.includes(busca.toLowerCase())) {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <img src="${c.img}" alt="${c.nome}">
+            <h3>${c.nome}</h3>
+            <div class="infos-extras">
+              <b>Setor:</b> ${c.setor} &nbsp; <b>TRL:</b> ${c.trl} &nbsp; <b>Proteção:</b> ${c.pi}
+            </div>
+            <p>${c.resumo}</p>
+            <button onclick="editarCard(${i})" style="background:#ffc627;color:#222;border:none;padding:5px 15px;border-radius:6px;font-weight:bold;cursor:pointer;"><i class='fas fa-pen'></i> Editar</button>
+          `;
+          lista.appendChild(card);
+          encontrados++;
+        }
+      });
+      document.getElementById('noResult').style.display = (encontrados===0 ? 'block' : 'none');
+    }
+    renderCards();
+
+    document.getElementById('buscaTec').addEventListener('input', renderCards);
+    document.getElementById('buscaTec2').addEventListener('keydown',function(e){if(e.key==="Enter"){e.preventDefault();pesquisaTopo();}});
+    window.editarCard = function(idx) {
+      editIndex = idx;
+      const c = cardsExemplo[idx];
+      openTab({currentTarget: document.querySelectorAll('.menu button')[2]}, 'cadastro');
+      showStep(0);
+      document.getElementById('nomeTec').value = c.nome;
+      document.getElementById('resumoTec').value = c.resumo;
+      document.getElementById('imgTec').value = c.img;
+      document.getElementById('setorTec').value = c.setor;
+      let trlSel = document.getElementById('trlTec');
+      for (let i = 0; i < trlSel.options.length; i++) {
+        if (trlSel.options[i].value.startsWith(c.trl + ' -')) {
+          trlSel.selectedIndex = i;
+          break;
+        }
+      }
+      document.getElementById('piTec').value = c.pi;
+      document.getElementById('form-cadastro-btn').textContent = 'Salvar Alteração';
+    }
+    document.getElementById('form-cadastro').onsubmit = function(e) {
+      e.preventDefault();
+      const nome = document.getElementById('nomeTec').value;
+      const resumo = document.getElementById('resumoTec').value;
+      const img = document.getElementById('imgTec').value || 'https://via.placeholder.com/300x110.png?text=Nova+Tecnologia';
+      const setor = document.getElementById('setorTec').value || 'Setor não informado';
+      const trl = document.getElementById('trlTec').value.split(' -')[0];
+      const pi = document.getElementById('piTec').value;
+      if (editIndex !== null) {
+        cardsExemplo[editIndex] = { nome, resumo, img, setor, trl, pi };
+        editIndex = null;
+        document.getElementById('form-cadastro-btn').textContent = 'Cadastrar Tecnologia';
+      } else {
+        cardsExemplo.unshift({ nome, resumo, img, setor, trl, pi });
+      }
+      renderCards();
+      showStep(0);
+      document.getElementById('form-cadastro').reset();
+      document.getElementById('msg-cadastro').style.display = 'block';
+      setTimeout(()=>{
+        document.getElementById('msg-cadastro').style.display = 'none';
+        openTab({currentTarget: document.querySelectorAll('.menu button')[1]}, 'vitrine');
+      }, 1500);
+    };
   </script>
 </body>
 </html>
