@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vitrine Tecnológica - SEICT/AC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: Raleway, Arial, sans-serif; margin:0; background:#f8f8f8; color:#222;}
+    header { background: #00723e; color: #fff; padding: 28px 0 20px 0; text-align: center;}
+    .menu { background: #ffc627; text-align: center; padding: 12px 0;}
+    .menu button { background: none; border: none; color: #222; font-size: 1.07em; font-weight: bold; margin: 0 14px; cursor: pointer; transition: color .2s;}
+    .menu button.active, .menu button:hover { color: #00723e; }
+    .tab { display: none; max-width: 1100px; margin: 0 auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.06); padding: 36px 36px 30px 36px;}
+    .tab.active { display: block; }
+    .cards { display: flex; flex-wrap: wrap; gap: 30px;}
+    .card { background: #f5f5f5; border-radius: 10px; border: 1px solid #e0e0e0; flex: 1 1 320px; min-width: 270px; max-width: 400px; padding: 18px 18px 12px 18px; margin-bottom: 20px;}
+    .card img { width: 100%; border-radius: 7px; height: 120px; object-fit: cover; margin-bottom: 10px;}
+    .card h3 { color: #00723e; margin: 4px 0 8px 0;}
+    .card p { color: #444; margin-bottom: 8px;}
+    .infos-extras {font-size:0.97em; margin-bottom: 4px;}
+    /* Form multi-etapas */
+    .cadastro-box { max-width: 670px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; background: #fafafa; padding: 24px 18px 18px 18px; }
+    .steps-nav {display:flex;justify-content:center;margin-bottom:22px;}
+    .steps-nav button {background:none;border:none;padding:7px 15px;margin:0 2px;cursor:pointer;border-radius:6px;font-weight:600;font-size:1em;color:#00723e;border:1px solid #ddd;}
+    .steps-nav button.active {background:#00723e;color:#fff;border:1px solid #00723e;}
+    .form-step { display: none; }
+    .form-step.active { display: block;}
+    label { display: block; margin-top: 12px; font-weight: bold; color: #00723e;}
+    input, textarea, select {
+      width: 100%; padding: 7px; border-radius: 5px; border: 1px solid #ccc; margin-top: 6px; margin-bottom: 13px; font-size: 1em;
+    }
+    .cadastro-box button, .cadastro-box .btn-prev, .cadastro-box .btn-next { background: #00723e; color: #fff; padding: 9px 24px; border: none; border-radius: 6px; font-weight: bold; font-size: 1em; margin-top: 14px; margin-right:10px; cursor: pointer;}
+    .cadastro-msg { color: #00723e; font-weight: bold; margin-top: 16px; text-align: center;}
+    .btn-prev {background: #ccc; color:#222;}
+    .card-sep {border-top:1px solid #d0d0d0;margin:8px 0 10px 0;}
+    footer { background: #00723e; color: #fff; text-align: center; padding: 22px 8px 18px 8px; margin-top: 30px; border-radius: 0 0 12px 12px;}
+    @media(max-width:900px) {.tab{padding:12px;} .cards{flex-direction:column;align-items:center;}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fa-solid fa-flask"></i> Vitrine Tecnológica</h1>
+    <div style="font-size:1.12em;">Secretaria de Estado de Indústria, Ciência e Tecnologia do Acre</div>
+  </header>
+  <div class="menu">
+    <button onclick="openTab(event,'vitrine')" class="active"><i class="fas fa-table-cells-large"></i> Vitrine Tecnológica</button>
+    <button onclick="openTab(event,'cadastro')"><i class="fas fa-plus-circle"></i> Cadastro de Tecnologia</button>
+  </div>
+
+  <!-- Vitrine -->
+  <div class="tab active" id="vitrine">
+    <h2 style="color:#00723e;"><i class="fas fa-lightbulb"></i> Tecnologias Disponíveis</h2>
+    <div class="cards" id="tecnologias-lista">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x110.png?text=EcoPolpa" alt="EcoPolpa">
+        <h3>EcoPolpa Digital</h3>
+        <div class="infos-extras"><b>Setor:</b> Agroindústria &nbsp; <b>TRL:</b> 4 <b>Proteção:</b> Patente</div>
+        <p>Processo automatizado para produção sustentável de polpa de frutas.</p>
+        <div class="card-sep"></div>
+        <div style="font-size:0.97em;"><b>Transferência:</b> Disponível<br><b>Parceiros:</b> Cooperativa AcreRural<br>
+        <b>Contato:</b> contato@seudominio.com
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cadastro multi-etapas -->
+  <div class="tab" id="cadastro">
+    <div class="cadastro-box">
+      <div class="steps-nav">
+        <button type="button" class="active" onclick="showStep(0)">Dados Gerais</button>
+        <button type="button" onclick="showStep(1)">Nível TRL</button>
+        <button type="button" onclick="showStep(2)">Propriedade Intelectual</button>
+        <button type="button" onclick="showStep(3)">Transferência</button>
+        <button type="button" onclick="showStep(4)">Parcerias</button>
+        <button type="button" onclick="showStep(5)">Institucional</button>
+      </div>
+      <form id="form-cadastro">
+        <!-- Step 1 -->
+        <div class="form-step active">
+          <h2><i class="fas fa-lightbulb"></i> Dados Gerais</h2>
+          <label>Nome da Tecnologia</label>
+          <input type="text" id="nomeTec" required placeholder="Ex: Solução ABC">
+          <label>Resumo</label>
+          <textarea id="resumoTec" required placeholder="Descreva a tecnologia..."></textarea>
+          <label>URL da Imagem</label>
+          <input type="url" id="imgTec" placeholder="https://...">
+          <label>Setor</label>
+          <input type="text" id="setorTec" placeholder="Ex: Agroindústria, Saúde...">
+          <button type="button" class="btn-next" onclick="nextStep(1)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <!-- Step 2 -->
+        <div class="form-step">
+          <h2><i class="fas fa-signal"></i> Nível TRL</h2>
+          <label>Nível TRL</label>
+          <select id="trlTec">
+            <option>1 - Princípios Básicos Observados</option>
+            <option>2 - Conceito Tecnológico Formulado</option>
+            <option>3 - Prova de Conceito Experimental</option>
+            <option>4 - Validação em Laboratório</option>
+            <option>5 - Validação em Ambiente Relevante</option>
+            <option>6 - Demonstração em Ambiente Relevante</option>
+            <option>7 - Demonstração em Ambiente Operacional</option>
+            <option>8 - Sistema Completo e Qualificado</option>
+            <option>9 - Sistema Real em Operação</option>
+          </select>
+          <button type="button" class="btn-prev" onclick="showStep(0)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(2)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <!-- Step 3 -->
+        <div class="form-step">
+          <h2><i class="fas fa-certificate"></i> Propriedade Intelectual</h2>
+          <label>Tipo de Proteção</label>
+          <select id="piTec">
+            <option>Patente</option>
+            <option>Programa de Computador</option>
+            <option>Direitos Autorais</option>
+            <option>Marca</option>
+            <option>Desenho Industrial</option>
+            <option>Segredo Industrial</option>
+            <option>Nenhum</option>
+          </select>
+          <label>Número de Protocolo</label>
+          <input type="text" id="numPiTec" placeholder="Digite o número se houver">
+          <button type="button" class="btn-prev" onclick="showStep(1)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(3)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <!-- Step 4 -->
+        <div class="form-step">
+          <h2><i class="fas fa-exchange-alt"></i> Transferência de Tecnologia</h2>
+          <label>Oportunidade de Transferência</label>
+          <input type="text" id="transfTec" placeholder="Descreva oportunidades...">
+          <label>Situação</label>
+          <select id="sitTransfTec">
+            <option>Disponível</option>
+            <option>Em Negociação</option>
+            <option>Transferida</option>
+            <option>Indisponível</option>
+          </select>
+          <button type="button" class="btn-prev" onclick="showStep(2)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(4)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <!-- Step 5 -->
+        <div class="form-step">
+          <h2><i class="fas fa-handshake"></i> Parcerias</h2>
+          <label>Parceiros</label>
+          <input type="text" id="parceriasTec" placeholder="Ex: Cooperativa, Startup, Universidade...">
+          <button type="button" class="btn-prev" onclick="showStep(3)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="button" class="btn-next" onclick="nextStep(5)">Próximo <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <!-- Step 6 -->
+        <div class="form-step">
+          <h2><i class="fas fa-building"></i> Institucional</h2>
+          <label>Contato institucional</label>
+          <input type="text" id="contatoTec" placeholder="E-mail, telefone...">
+          <button type="button" class="btn-prev" onclick="showStep(4)"><i class="fas fa-arrow-left"></i> Anterior</button>
+          <button type="submit"><i class="fas fa-save"></i> Cadastrar Tecnologia</button>
+        </div>
+      </form>
+      <div class="cadastro-msg" id="msg-cadastro" style="display:none;">
+        <i class="fas fa-check-circle"></i> Tecnologia cadastrada (simulação)!
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Governo do Estado do Acre. Todos os direitos reservados.<br>
+    <span style="font-size:0.9em;">Feito para fins de teste e apresentação • <i class="fab fa-font-awesome"></i> Font Awesome</span>
+  </footer>
+
+  <script>
+    // Tabs externas
+    function openTab(evt, tab) {
+      document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+      document.querySelectorAll('.menu button').forEach(e => e.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    // Wizard multi-etapas
+    let currentStep = 0;
+    function showStep(i) {
+      currentStep = i;
+      let steps = document.querySelectorAll('.form-step');
+      steps.forEach((step, idx) => step.classList.toggle('active', idx === i));
+      let navBtns = document.querySelectorAll('.steps-nav button');
+      navBtns.forEach((btn, idx) => btn.classList.toggle('active', idx === i));
+      window.scrollTo({top: 220, behavior:'smooth'});
+    }
+    function nextStep(next) { showStep(next); }
+
+    // Cadastro e renderização de cards com todos os campos
+    document.getElementById('form-cadastro').onsubmit = function(e) {
+      e.preventDefault();
+      // Coleta dos campos de todas as etapas
+      const nome = document.getElementById('nomeTec').value;
+      const resumo = document.getElementById('resumoTec').value;
+      const img = document.getElementById('imgTec').value || 'https://via.placeholder.com/300x110.png?text=Nova+Tecnologia';
+      const setor = document.getElementById('setorTec').value || 'Setor não informado';
+      const trl = document.getElementById('trlTec').value;
+      const pi = document.getElementById('piTec').value;
+      const numpi = document.getElementById('numPiTec').value;
+      const transf = document.getElementById('transfTec').value;
+      const sitTransf = document.getElementById('sitTransfTec').value;
+      const parceiros = document.getElementById('parceriasTec').value;
+      const contato = document.getElementById('contatoTec').value;
+
+      // Cria card
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${img}" alt="${nome}">
+        <h3>${nome}</h3>
+        <div class="infos-extras">
+          <b>Setor:</b> ${setor} &nbsp; 
+          <b>TRL:</b> ${trl.split(' -')[0]} &nbsp; 
+          <b>Proteção:</b> ${pi}${numpi ? ' (' + numpi + ')' : ''}
+        </div>
+        <p>${resumo}</p>
+        <div class="card-sep"></div>
+        <div style="font-size:0.97em;">
+          <b>Transferência:</b> ${sitTransf || '-'}<br>
+          <b>Oportunidade:</b> ${transf || '-'}<br>
+          <b>Parceiros:</b> ${parceiros || '-'}<br>
+          <b>Contato:</b> ${contato || '-'}
+        </div>
+      `;
+      document.getElementById('tecnologias-lista').appendChild(card);
+
+      // Feedback
+      showStep(0); // volta pro início
+      document.getElementById('form-cadastro').reset();
+      document.getElementById('msg-cadastro').style.display = 'block';
+      setTimeout(()=>{ document.getElementById('msg-cadastro').style.display = 'none'; }, 2000);
+    };
+  </script>
+</body>
+</html>
